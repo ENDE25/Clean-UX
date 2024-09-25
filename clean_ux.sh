@@ -5,7 +5,7 @@ echo "Iniciando limpieza del sistema..."
 # Función para limpieza con APT
 clean_apt() {
     echo "Eliminando paquetes innecesarios..."
-    sudo apt autoremove -y
+    sudo apt autoremove --purge -y
 
     echo "Limpiando archivos temporales de paquetes..."
     sudo apt clean
@@ -13,17 +13,17 @@ clean_apt() {
     echo "Eliminando paquetes obsoletos..."
     sudo apt autoclean
 
-    echo "Eliminando kernels antiguos..."
-    sudo apt autoremove --purge -y
+    echo "Eliminando kernels antiguos (manteniendo la última versión)..."
+    sudo apt autoremove --purge --no-install-recommends -y
 
     echo "Eliminando archivos de caché de apt..."
     sudo rm -rf /var/cache/apt/archives/*
 
     echo "Eliminando archivos temporales..."
-    sudo rm -rf /tmp/*
+    sudo find /tmp -type f -atime +10 -delete  # Solo elimina archivos que no se han accedido en más de 10 días
 
-    echo "Eliminando archivos de logs antiguos..."
-    sudo rm -rf /var/log/*.log
+    echo "Eliminando archivos de logs antiguos (no críticos)..."
+    sudo find /var/log -name "*.log" -mtime +30 -exec rm -f {} \;  # Solo elimina logs más antiguos de 30 días
 
     echo "Vaciando la papelera..."
     rm -rf ~/.local/share/Trash/*
@@ -37,17 +37,17 @@ clean_dnf() {
     echo "Limpiando archivos temporales de paquetes..."
     sudo dnf clean all
 
-    echo "Eliminando kernels antiguos..."
+    echo "Eliminando kernels antiguos (manteniendo la última versión)..."
     sudo dnf remove $(dnf repoquery --installonly --latest-limit=-2 -q)
 
     echo "Eliminando archivos de caché de dnf..."
     sudo rm -rf /var/cache/dnf
 
     echo "Eliminando archivos temporales..."
-    sudo rm -rf /tmp/*
+    sudo find /tmp -type f -atime +10 -delete  # Solo elimina archivos que no se han accedido en más de 10 días
 
-    echo "Eliminando archivos de logs antiguos..."
-    sudo rm -rf /var/log/*.log
+    echo "Eliminando archivos de logs antiguos (no críticos)..."
+    sudo find /var/log -name "*.log" -mtime +30 -exec rm -f {} \;  # Solo elimina logs más antiguos de 30 días
 
     echo "Vaciando la papelera..."
     rm -rf ~/.local/share/Trash/*
