@@ -17,7 +17,7 @@ ShellScripts for cleaning linux in APT and DNF, emptying the disk of obsolete fi
       Removes installed package versions that are not the most recent, keeping only the last two.
 
 5. **Delete DNF/APT cache**:  
-      Clears all content in the specific DNF cache directory.
+      Clears all content in the specific DNF/APT cache directory.
 
 6. **Remove temporary files**:  
       Cleans the system's temporary directory by deleting unnecessary files.
