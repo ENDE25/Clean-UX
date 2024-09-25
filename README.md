@@ -1,7 +1,10 @@
 # Clean-UX
 ShellScripts for cleaning linux in APT and DNF, emptying the disk of obsolete files.
 
-Just download the `clean_ux.sh` file and execute it from the shell with `./clean_ux.sh`
+## How to use it
+1. Download the `clean_ux.sh` file 
+2. Grant the necessary permits with `chmod +x clean_ux.sh`
+3. Execute it from the shell with `./clean_ux.sh`
 
 ## Actions
 1. **Remove unnecessary packages**:  
