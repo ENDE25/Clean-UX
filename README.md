@@ -8,7 +8,7 @@
 
 ### 1. Download the tool
 
-Download only the script:
+Download the script:
 
 ```bash
 wget https://raw.githubusercontent.com/ENDE25/Clean-UX/main/clean_ux.sh
