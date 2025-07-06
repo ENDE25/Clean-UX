@@ -8,14 +8,7 @@
 
 ### 1. Download the tool
 
-Clone the repository:
-
-```bash
-git clone https://github.com/ENDE25/Clean-UX.git
-cd Clean-UX
-```
-
-Or download only the script:
+Download only the script:
 
 ```bash
 wget https://raw.githubusercontent.com/ENDE25/Clean-UX/main/clean_ux.sh
