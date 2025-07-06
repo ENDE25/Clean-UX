@@ -54,18 +54,5 @@ sudo ./clean_ux.sh
 2. **Intermediate**: All of the above + removes unnecessary packages and old logs.
 3. **Deep**: All of the above + cleans `/tmp` and empties the trash.
 
-## Requirements
-
-- Bash
-- Sudo permissions to clean system caches and logs
-- APT or DNF based systems
-
-## Notes
-
-- On DNF systems, cache cleaning is forced to ensure no residual files remain.
-- On APT systems, standard cleaning is sufficient and safe.
-- The script handles spaces and permissions in file names.
-
 ---
 
-Enjoy a clean and optimized system with Clean-UX!
