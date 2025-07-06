@@ -40,7 +40,6 @@ sudo ./clean_ux.sh
 
 ## Main Features
 
-- **Visual banner**: Displays a colorful ASCII banner at startup.
 - **Interactive menu**: Select cleaning level (basic, intermediate, deep, exit) with an explanation of each level.
 - **Summary and confirmation**: Before execution, shows a summary of actions and a list of files to be deleted, with colors according to the level:
   - Green: basic cleaning
