@@ -54,5 +54,3 @@ sudo ./clean_ux.sh
 2. **Intermediate**: All of the above + removes unnecessary packages and old logs.
 3. **Deep**: All of the above + cleans `/tmp` and empties the trash.
 
----
-
