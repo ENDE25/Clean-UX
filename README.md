@@ -2,6 +2,8 @@
 
 **Clean-UX** is an advanced, interactive and reliable system cleaning script for Linux, compatible with both APT-based (Debian, Ubuntu) and DNF-based (Fedora, RHEL, etc) systems.
 
+![image](https://github.com/user-attachments/assets/2521752b-594f-4840-ae5b-85465e6b8121)
+
 ## How to Download and Use Clean-UX from the Command Line
 
 ### 1. Download the tool
