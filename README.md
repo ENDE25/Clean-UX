@@ -1,48 +1,77 @@
 # Clean-UX
 
-**Clean-UX** es un script avanzado de limpieza de sistema para Linux, interactivo, fiable y compatible tanto con sistemas basados en APT (Debian, Ubuntu) como DNF (Fedora, RHEL, etc).
+**Clean-UX** is an advanced, interactive and reliable system cleaning script for Linux, compatible with both APT-based (Debian, Ubuntu) and DNF-based (Fedora, RHEL, etc) systems.
 
-## Características principales
+## How to Download and Use Clean-UX from the Command Line
 
-- **Banner visual**: Muestra un banner ASCII colorido al iniciar.
-- **Menú interactivo**: Selección de nivel de limpieza (básica, intermedia, profunda, salir) con explicación de cada nivel.
-- **Resumen y confirmación**: Antes de ejecutar, muestra un resumen de acciones y un listado de archivos a eliminar, con colores según el nivel:
-  - Verde: limpieza básica
-  - Amarillo: limpieza intermedia
-  - Rojo: limpieza profunda
-- **Limpieza efectiva**:
-  - Para APT: ejecuta `apt clean`, `apt autoclean`, y `apt autoremove` según el nivel.
-  - Para DNF: ejecuta `dnf clean all`, `dnf autoremove` y fuerza la eliminación total de la caché (`sudo rm -rf /var/cache/dnf/*`) para asegurar que no queden archivos residuales.
-  - Elimina logs antiguos (>30 días), archivos temporales de `/tmp` (no accedidos en 10 días) y vacía la papelera de usuario.
-- **Gestión de permisos**: Intenta ajustar permisos de archivos rebeldes para asegurar su eliminación.
-- **Reporte final**: Muestra espacio liberado y número de archivos eliminados en azul.
-- **Explicaciones**: Si quedan archivos sin borrar, explica posibles causas (permisos, archivos en uso, etc).
+### 1. Download the tool
 
-## Niveles de limpieza
-
-1. **Básica**: Limpia caché de paquetes y archivos temporales de paquetes.
-2. **Intermedia**: Todo lo anterior + elimina paquetes innecesarios y logs antiguos.
-3. **Profunda**: Todo lo anterior + limpia `/tmp` y vacía la papelera.
-
-## Uso
+Clone the repository:
 
 ```bash
+git clone https://github.com/ENDE25/Clean-UX.git
+cd Clean-UX
+```
+
+Or download only the script:
+
+```bash
+wget https://raw.githubusercontent.com/ENDE25/Clean-UX/main/clean_ux.sh
 chmod +x clean_ux.sh
+```
+
+### 2. Run Clean-UX
+
+#### As a regular user (recommended for cleaning user files and trash):
+
+```bash
 ./clean_ux.sh
 ```
 
-Sigue las instrucciones en pantalla para seleccionar el nivel de limpieza y confirmar las acciones.
+#### With sudo (required for full system cleaning: package cache, logs, /tmp, etc):
 
-## Requisitos
+```bash
+sudo ./clean_ux.sh
+```
+
+> **Note:**
+> - Running as a regular user will only clean files you have permission to delete (mainly your home directory and trash).
+> - Running with `sudo` is necessary to clean system directories (package cache, logs, /tmp, etc) and is required for full cleaning on most systems.
+
+## Main Features
+
+- **Visual banner**: Displays a colorful ASCII banner at startup.
+- **Interactive menu**: Select cleaning level (basic, intermediate, deep, exit) with an explanation of each level.
+- **Summary and confirmation**: Before execution, shows a summary of actions and a list of files to be deleted, with colors according to the level:
+  - Green: basic cleaning
+  - Yellow: intermediate cleaning
+  - Red: deep cleaning
+- **Effective cleaning**:
+  - For APT: runs `apt clean`, `apt autoclean`, and `apt autoremove` according to the selected level.
+  - For DNF: runs `dnf clean all`, `dnf autoremove` and forcefully deletes the entire cache (`sudo rm -rf /var/cache/dnf/*`) to ensure no residual files remain.
+  - Deletes old logs (>30 days), temporary files in `/tmp` (not accessed in 10 days), and empties the user's trash.
+- **Permission handling**: Attempts to adjust permissions of stubborn files to ensure their deletion.
+- **Final report**: Shows freed space and number of deleted files in blue.
+- **Explanations**: If files remain undeleted, explains possible causes (permissions, files in use, etc).
+
+## Cleaning Levels
+
+1. **Basic**: Cleans package cache and temporary package files.
+2. **Intermediate**: All of the above + removes unnecessary packages and old logs.
+3. **Deep**: All of the above + cleans `/tmp` and empties the trash.
+
+## Requirements
+
 - Bash
-- Permisos de sudo para limpiar cachés y logs del sistema
-- Sistemas basados en APT o DNF
+- Sudo permissions to clean system caches and logs
+- APT or DNF based systems
 
-## Notas
-- En sistemas DNF, la limpieza de caché es forzada para asegurar que no queden archivos residuales.
-- En sistemas APT, la limpieza estándar es suficiente y segura.
-- El script maneja espacios y permisos en nombres de archivos.
+## Notes
+
+- On DNF systems, cache cleaning is forced to ensure no residual files remain.
+- On APT systems, standard cleaning is sufficient and safe.
+- The script handles spaces and permissions in file names.
 
 ---
 
-¡Disfruta de un sistema limpio y optimizado con Clean-UX!
+Enjoy a clean and optimized system with Clean-UX!
