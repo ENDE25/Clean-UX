@@ -1,29 +1,48 @@
 # Clean-UX
-ShellScripts for cleaning linux in APT and DNF, emptying the disk of obsolete files.
 
-## How to use it
-1. Download the `clean_ux.sh` file 
-2. Grant the necessary permits with `chmod +x clean_ux.sh`
-3. Execute it from the shell with `./clean_ux.sh`
+**Clean-UX** es un script avanzado de limpieza de sistema para Linux, interactivo, fiable y compatible tanto con sistemas basados en APT (Debian, Ubuntu) como DNF (Fedora, RHEL, etc).
 
-## Actions
-1. **Remove unnecessary packages**:  
-      Automatically removes packages that were installed as dependencies and are no longer needed.
+## Características principales
 
-3. **Clean DNF/APT cache**:  
-      Deletes all files and metadata stored in the DNF/APT package manager's cache.
+- **Banner visual**: Muestra un banner ASCII colorido al iniciar.
+- **Menú interactivo**: Selección de nivel de limpieza (básica, intermedia, profunda, salir) con explicación de cada nivel.
+- **Resumen y confirmación**: Antes de ejecutar, muestra un resumen de acciones y un listado de archivos a eliminar, con colores según el nivel:
+  - Verde: limpieza básica
+  - Amarillo: limpieza intermedia
+  - Rojo: limpieza profunda
+- **Limpieza efectiva**:
+  - Para APT: ejecuta `apt clean`, `apt autoclean`, y `apt autoremove` según el nivel.
+  - Para DNF: ejecuta `dnf clean all`, `dnf autoremove` y fuerza la eliminación total de la caché (`sudo rm -rf /var/cache/dnf/*`) para asegurar que no queden archivos residuales.
+  - Elimina logs antiguos (>30 días), archivos temporales de `/tmp` (no accedidos en 10 días) y vacía la papelera de usuario.
+- **Gestión de permisos**: Intenta ajustar permisos de archivos rebeldes para asegurar su eliminación.
+- **Reporte final**: Muestra espacio liberado y número de archivos eliminados en azul.
+- **Explicaciones**: Si quedan archivos sin borrar, explica posibles causas (permisos, archivos en uso, etc).
 
-4. **Remove old kernels** (preserving the penultimate version for recovery in case of failure):  
-      Removes installed package versions that are not the most recent, keeping only the last two.
+## Niveles de limpieza
 
-5. **Delete DNF/APT cache**:  
-      Clears all content in the specific DNF/APT cache directory.
+1. **Básica**: Limpia caché de paquetes y archivos temporales de paquetes.
+2. **Intermedia**: Todo lo anterior + elimina paquetes innecesarios y logs antiguos.
+3. **Profunda**: Todo lo anterior + limpia `/tmp` y vacía la papelera.
 
-6. **Remove temporary files**:  
-      Cleans the system's temporary directory by deleting unnecessary files.
+## Uso
 
-7. **Delete log files**:  
-       Removes all system log files, freeing up disk space.
+```bash
+chmod +x clean_ux.sh
+./clean_ux.sh
+```
 
-8. **Empty the trash**:  
-       Deletes all files stored in the current user's recycle bin.
+Sigue las instrucciones en pantalla para seleccionar el nivel de limpieza y confirmar las acciones.
+
+## Requisitos
+- Bash
+- Permisos de sudo para limpiar cachés y logs del sistema
+- Sistemas basados en APT o DNF
+
+## Notas
+- En sistemas DNF, la limpieza de caché es forzada para asegurar que no queden archivos residuales.
+- En sistemas APT, la limpieza estándar es suficiente y segura.
+- El script maneja espacios y permisos en nombres de archivos.
+
+---
+
+¡Disfruta de un sistema limpio y optimizado con Clean-UX!
